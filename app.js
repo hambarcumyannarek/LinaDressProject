@@ -7,6 +7,7 @@ const Wishes = require('./routers/Wishes');
 const Bought = require('./routers/Bought');
 const Grancvel = require('./routers/Grancvel');
 const JWT = require('jsonwebtoken');
+const fs = require('fs/promises')
 
 const app = express();
 
@@ -38,8 +39,8 @@ app.get('/', async (req, res) => {
 
     const wishes = await DB.query('select * from wishes where product_user_id = ?', [getUser ? getUser.id : undefined]);
     const bought = await DB.query('select * from bought where product_user_id = ?', [getUser ? getUser.id : undefined]);
-    
-    res.render('index.ejs', { products, user: getUser, likesProducts: wishes[0], boughtProducts: bought[0]})
+
+    res.render('index.ejs', { products, user: getUser, likesProducts: wishes[0], boughtProducts: bought[0] })
 })
 
 app.get('/home', async (req, res) => {
@@ -60,8 +61,8 @@ app.get('/home', async (req, res) => {
 
     const wishes = await DB.query('select * from wishes where product_user_id = ?', [getUser ? getUser.id : undefined]);
     const bought = await DB.query('select * from bought where product_user_id = ?', [getUser ? getUser.id : undefined]);
-    
-    res.render('index.ejs', { products, user: getUser, likesProducts: wishes[0], boughtProducts: bought[0]})
+
+    res.render('index.ejs', { products, user: getUser, likesProducts: wishes[0], boughtProducts: bought[0] })
 })
 
 
